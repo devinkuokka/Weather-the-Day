@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88507E2FC52C90CF54141645 /* Pods_WeatherTheDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */; };
 		C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A41DDA360300C75BE5 /* AppDelegate.swift */; };
 		C9B868A71DDA360300C75BE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A61DDA360300C75BE5 /* RootViewController.swift */; };
 		C9B868A91DDA360300C75BE5 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A81DDA360300C75BE5 /* DataViewController.swift */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31920CCB6F5BA1E8BA65CA06 /* Pods-WeatherTheDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTheDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTheDay/Pods-WeatherTheDay.release.xcconfig"; sourceTree = "<group>"; };
+		343A353013CDC881BA3B47B2 /* Pods-WeatherTheDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTheDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTheDay/Pods-WeatherTheDay.debug.xcconfig"; sourceTree = "<group>"; };
+		8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTheDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B868A11DDA360300C75BE5 /* WeatherTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B868A41DDA360300C75BE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B868A61DDA360300C75BE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88507E2FC52C90CF54141645 /* Pods_WeatherTheDay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96A87B89A205BDCBE4664C69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B3CCE94A1AABF8D36D2C814B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				343A353013CDC881BA3B47B2 /* Pods-WeatherTheDay.debug.xcconfig */,
+				31920CCB6F5BA1E8BA65CA06 /* Pods-WeatherTheDay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C9B868981DDA360300C75BE5 = {
 			isa = PBXGroup;
 			children = (
 				C9B868A31DDA360300C75BE5 /* WeatherTheDay */,
 				C9B868A21DDA360300C75BE5 /* Products */,
+				B3CCE94A1AABF8D36D2C814B /* Pods */,
+				96A87B89A205BDCBE4664C69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9B868B71DDA360300C75BE5 /* Build configuration list for PBXNativeTarget "WeatherTheDay" */;
 			buildPhases = (
+				AC875D566F6DE7B1533356C3 /* [CP] Check Pods Manifest.lock */,
 				C9B8689D1DDA360300C75BE5 /* Sources */,
 				C9B8689E1DDA360300C75BE5 /* Frameworks */,
 				C9B8689F1DDA360300C75BE5 /* Resources */,
+				E31F377C7AB6BDF1FBFCD28A /* [CP] Embed Pods Frameworks */,
+				77B5AE81C5F09221098D5C4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		77B5AE81C5F09221098D5C4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherTheDay/Pods-WeatherTheDay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC875D566F6DE7B1533356C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E31F377C7AB6BDF1FBFCD28A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherTheDay/Pods-WeatherTheDay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9B8689D1DDA360300C75BE5 /* Sources */ = {
@@ -264,6 +339,7 @@
 		};
 		C9B868B81DDA360300C75BE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 343A353013CDC881BA3B47B2 /* Pods-WeatherTheDay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WeatherTheDay/Info.plist;
@@ -276,6 +352,7 @@
 		};
 		C9B868B91DDA360300C75BE5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31920CCB6F5BA1E8BA65CA06 /* Pods-WeatherTheDay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WeatherTheDay/Info.plist;
@@ -305,6 +382,7 @@
 				C9B868B91DDA360300C75BE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
