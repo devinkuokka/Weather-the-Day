@@ -14,6 +14,8 @@
 		C9956D6E1DEB9BF900B2DAE2 /* DarkSky.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9321B8A1DDC335100E2BAEC /* DarkSky.swift */; };
 		C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9956D6F1DEB9CE900B2DAE2 /* ForecastLoader.swift */; };
 		C9956D721DEBA3C700B2DAE2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9956D711DEBA3C700B2DAE2 /* Model.swift */; };
+		C9956D761DEBAED100B2DAE2 /* InfoCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9956D741DEBAED100B2DAE2 /* InfoCircleView.swift */; };
+		C9AF623A1DEBD80800AA9BD6 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AF62391DEBD80800AA9BD6 /* CircleView.swift */; };
 		C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A41DDA360300C75BE5 /* AppDelegate.swift */; };
 		C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */; };
 		C9B868AE1DDA360300C75BE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B868AC1DDA360300C75BE5 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		C9321B8A1DDC335100E2BAEC /* DarkSky.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSky.swift; sourceTree = "<group>"; };
 		C9956D6F1DEB9CE900B2DAE2 /* ForecastLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastLoader.swift; sourceTree = "<group>"; };
 		C9956D711DEBA3C700B2DAE2 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C9956D741DEBAED100B2DAE2 /* InfoCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoCircleView.swift; path = Components/InfoCircleView.swift; sourceTree = "<group>"; };
+		C9AF62391DEBD80800AA9BD6 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleView.swift; path = Components/CircleView.swift; sourceTree = "<group>"; };
 		C9B868A11DDA360300C75BE5 /* WeatherTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B868A41DDA360300C75BE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
@@ -81,11 +85,21 @@
 		C9956D6D1DEB9AD100B2DAE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C9956D731DEBAE8900B2DAE2 /* Components */,
 				C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */,
 				03DDD57A1DDCE312007BE551 /* HourlyViewController.swift */,
 				03DDD57C1DDCE379007BE551 /* WeeklyViewController.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		C9956D731DEBAE8900B2DAE2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C9956D741DEBAED100B2DAE2 /* InfoCircleView.swift */,
+				C9AF62391DEBD80800AA9BD6 /* CircleView.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		C9B868981DDA360300C75BE5 = {
@@ -260,8 +274,10 @@
 				C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */,
 				C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */,
 				C9956D6A1DEB99C600B2DAE2 /* HomeModel.swift in Sources */,
+				C9AF623A1DEBD80800AA9BD6 /* CircleView.swift in Sources */,
 				C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */,
 				C9956D721DEBA3C700B2DAE2 /* Model.swift in Sources */,
+				C9956D761DEBAED100B2DAE2 /* InfoCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
