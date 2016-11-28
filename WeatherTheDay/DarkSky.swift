@@ -29,6 +29,6 @@ fileprivate func findWeatherImageString(icon: String) -> String {
     case "partly-cloudy-night":
         return "Cloud-Moon"
     default:
-        return "Sun"
+        return icon.capitalized
     }
 }

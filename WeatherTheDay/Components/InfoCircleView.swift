@@ -14,7 +14,7 @@ import UIKit
         didSet { drawText(center: self.center) }
     }
     
-    @IBInspectable var textFont : String = "Hello" {
+    @IBInspectable var textFont : String = "Avenir" {
         didSet { drawText(center: self.center) }
     }
     
