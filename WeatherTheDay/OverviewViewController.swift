@@ -15,11 +15,16 @@ class OverviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = HomeModel(callback: displayWeather)
-        
-        
+        updateWeather()
     }
     
+    
+    func updateWeather() {
+        ForecastLoader.getForecast(modelType: HomeModel.self) {model in
+            self.model = model
+            self.displayWeather()
+        }
+    }
     
     func displayWeather() {
         guard let model = self.model else {
@@ -29,26 +34,28 @@ class OverviewViewController: UIViewController {
         let center = midpoint(a: weatherImage.center, b: temperatureLabel.center)
         drawCircle(center: center, radius: weatherImage.image!.size.width / 10 * 1.5)
         
-        lowTemperatureLabel.text = "\(model.currentTemp!)"
-        temperatureLabel.text = "\(model.lowTemp!)"
-        highTemperatureLabel.text = "\(model.highTemp!)"
+        lowTemperatureLabel.text = "\(model.currentTemp)"
+        temperatureLabel.text = "\(model.lowTemp)"
+        highTemperatureLabel.text = "\(model.highTemp)"
     }
     
     
-    
-    func drawCircle(center: CGPoint, radius: CGFloat) {
+    func drawCircle(center: CGPoint,
+                    radius: CGFloat,
+                    fillColor: UIColor=UIColor.clear,
+                    strokeColor: UIColor=UIColor.black) {
         let newCenter = CGPoint(x: center.x, y: center.y)
         let circlePath = UIBezierPath(arcCenter: newCenter,
                                       radius: radius,
                                       startAngle: CGFloat(0),
-                                      endAngle:CGFloat(M_PI * 2),
+                                      endAngle: CGFloat(M_PI * 2),
                                       clockwise: true)
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
         
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.fillColor = fillColor.cgColor
+        shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.lineWidth = 10.0
         circleLayer = shapeLayer
         view.layer.addSublayer(shapeLayer)
@@ -57,12 +64,7 @@ class OverviewViewController: UIViewController {
     fileprivate func midpoint(a: CGPoint, b: CGPoint) -> CGPoint{
         return CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

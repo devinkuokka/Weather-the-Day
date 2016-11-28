@@ -11,8 +11,9 @@
 		03DDD57D1DDCE379007BE551 /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DDD57C1DDCE379007BE551 /* WeeklyViewController.swift */; };
 		88507E2FC52C90CF54141645 /* Pods_WeatherTheDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */; };
 		C9956D6A1DEB99C600B2DAE2 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91D230F1DDCDB7700CD9F77 /* HomeModel.swift */; };
-		C9956D6B1DEB99C900B2DAE2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9350B951DE2B8F100AA5042 /* Model.swift */; };
 		C9956D6E1DEB9BF900B2DAE2 /* DarkSky.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9321B8A1DDC335100E2BAEC /* DarkSky.swift */; };
+		C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9956D6F1DEB9CE900B2DAE2 /* ForecastLoader.swift */; };
+		C9956D721DEBA3C700B2DAE2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9956D711DEBA3C700B2DAE2 /* Model.swift */; };
 		C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A41DDA360300C75BE5 /* AppDelegate.swift */; };
 		C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */; };
 		C9B868AE1DDA360300C75BE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B868AC1DDA360300C75BE5 /* Main.storyboard */; };
@@ -28,7 +29,8 @@
 		8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTheDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91D230F1DDCDB7700CD9F77 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C9321B8A1DDC335100E2BAEC /* DarkSky.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSky.swift; sourceTree = "<group>"; };
-		C9350B951DE2B8F100AA5042 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C9956D6F1DEB9CE900B2DAE2 /* ForecastLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastLoader.swift; sourceTree = "<group>"; };
+		C9956D711DEBA3C700B2DAE2 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C9B868A11DDA360300C75BE5 /* WeatherTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B868A41DDA360300C75BE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				C91D230F1DDCDB7700CD9F77 /* HomeModel.swift */,
-				C9350B951DE2B8F100AA5042 /* Model.swift */,
+				C9956D711DEBA3C700B2DAE2 /* Model.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				C9321B8A1DDC335100E2BAEC /* DarkSky.swift */,
+				C9956D6F1DEB9CE900B2DAE2 /* ForecastLoader.swift */,
 			);
 			name = "API Access";
 			sourceTree = "<group>";
@@ -255,9 +258,10 @@
 				03DDD57B1DDCE312007BE551 /* HourlyViewController.swift in Sources */,
 				C9956D6E1DEB9BF900B2DAE2 /* DarkSky.swift in Sources */,
 				C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */,
-				C9956D6B1DEB99C900B2DAE2 /* Model.swift in Sources */,
+				C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */,
 				C9956D6A1DEB99C600B2DAE2 /* HomeModel.swift in Sources */,
 				C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */,
+				C9956D721DEBA3C700B2DAE2 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

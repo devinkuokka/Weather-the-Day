@@ -3,43 +3,38 @@ import ForecastIO
 import CoreLocation
 
 class HomeModel : Model {
-    let locationManager : CLLocationManager
     
-    var latitude : Float!
-    var longitude: Float!
+    let latitude : Float
+    let longitude: Float
     
-    var iconPath : String!
-    var description : String!
-    var changeFromYesterday : String!
+    let iconPath : String
+    let description : String
+    let changeFromYesterday : String
     
-    var currentTemp : Int!
-    var lowTemp : Int!
-    var highTemp : Int!
+    let currentTemp : Int
+    let lowTemp : Int
+    let highTemp : Int
     
-    var chanceOfPrecip : Float!
-    var minutesUntilPrecip: Int!
+    let chanceOfPrecip : Float
+    let minutesUntilPrecip: Int
+    
     var typeOfPrecip : Precipitation!
     
-    init(callback: @escaping (Void) -> Void) {
-        self.locationManager = CLLocationManager()
-        let location = locationManager.location!.coordinate
-        super.init()
-        getForecast(latitude: Float(location.latitude), longitude: Float(location.longitude), callback: callback)
+    var coordinates : CLLocationCoordinate2D {
+        get {
+            let lat = CLLocationDegrees(exactly: self.latitude)!
+            let long = CLLocationDegrees(exactly: self.longitude)!
+            return CLLocationCoordinate2D(latitude: lat, longitude: long)
+        }
     }
     
-    init(locationManager: CLLocationManager, forecast: Forecast) {
-        self.locationManager = locationManager
-        super.init()
-        populate(forecast: forecast)
-    }
-    
-    
-    override func populate(forecast: Forecast) {
+    required init(forecast: Forecast) {
         let data = forecast.currently!
         let today = forecast.daily!.data![0]
         
         self.latitude = forecast.latitude
         self.longitude = forecast.longitude
+        
         self.iconPath = data.icon!.rawValue
         self.description = HomeModel.createDescription()
         self.changeFromYesterday = HomeModel.createChangeFromYesterday()
@@ -49,7 +44,7 @@ class HomeModel : Model {
         self.highTemp = Int(today.temperatureMax!)
         
         
-        self.chanceOfPrecip = data.precipProbability
+        self.chanceOfPrecip = data.precipProbability!
         self.typeOfPrecip = data.precipType
         self.minutesUntilPrecip = HomeModel.findTimeUntilPrecip()
     }
