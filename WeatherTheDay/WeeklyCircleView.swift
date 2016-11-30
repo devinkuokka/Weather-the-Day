@@ -18,8 +18,8 @@ import UIKit
     var high_low: UILabel?
     var image: UIImageView?
     
-    var origin: CGPoint
-    var size: CGSize
+    var origin: CGPoint?
+    var size: CGSize?
     
     
     override func draw(_ frame: CGRect) {
@@ -49,10 +49,10 @@ import UIKit
     
     private func drawTemp(){
         temp?.removeFromSuperview()
-        let frame = CGRect(x: center.x,
-                           y: center.y - size.height/4,
-                           width: size.width/4,
-                           height: size.height/2)
+        let frame = CGRect(x: origin!.x,
+                           y: origin!.y - size!.height/4,
+                           width: size!.width/4,
+                           height: size!.height/2)
         temp = UILabel(frame: frame)
         //temp!.text
         temp!.textColor = textColor
@@ -64,10 +64,10 @@ import UIKit
     
     private func drawImage(name: String) {
         image?.removeFromSuperview()
-        let frame = CGRect(x: center.x,
-                           y: center.y + size.height/4,
-                           width: size.width/4,
-                           height: size.height/2)
+        let frame = CGRect(x: origin!.x,
+                           y: origin!.y + size!.height/4,
+                           width: size!.width/4,
+                           height: size!.height/2)
         image = UIImageView(frame: frame)
         image!.image = UIImage(named: name)
     }
@@ -77,16 +77,16 @@ import UIKit
         var x : CGFloat
         var y : CGFloat
         
-        if (isLow){ x = origin.x - 1.5*(size.width/4)
-        } else { x = origin.x + 1.5*(size.width/4) }
+        if (isLow){ x = origin!.x - 1.5*(size!.width/4)
+        } else { x = origin!.x + 1.5*(size!.width/4) }
         
-        if (input == "Low" || input == "High"){ y = origin.y + (size.height/6)
-        } else { y = origin.y - (size.height/6) }
+        if (input == "Low" || input == "High"){ y = origin!.y + (size!.height/6)
+        } else { y = origin!.y - (size!.height/6) }
         
         let frame = CGRect(x: x,
                            y: y,
-                           width: 1.5*(size.width/4),
-                           height: size.height/2)
+                           width: 1.5*(size!.width/4),
+                           height: size!.height/2)
         
         high_low = UILabel(frame: frame)
         high_low!.text = input
