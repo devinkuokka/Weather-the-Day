@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0342DA601DEF4F7000161618 /* WeeklyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342DA5F1DEF4F7000161618 /* WeeklyCircleView.swift */; };
+		0342DA621DEF74B600161618 /* HourlyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342DA611DEF74B600161618 /* HourlyCircleView.swift */; };
 		03DDD57B1DDCE312007BE551 /* HourlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DDD57A1DDCE312007BE551 /* HourlyViewController.swift */; };
 		03DDD57D1DDCE379007BE551 /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DDD57C1DDCE379007BE551 /* WeeklyViewController.swift */; };
 		88507E2FC52C90CF54141645 /* Pods_WeatherTheDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0342DA5F1DEF4F7000161618 /* WeeklyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCircleView.swift; sourceTree = "<group>"; };
+		0342DA611DEF74B600161618 /* HourlyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCircleView.swift; sourceTree = "<group>"; };
 		03DDD57A1DDCE312007BE551 /* HourlyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyViewController.swift; sourceTree = "<group>"; };
 		03DDD57C1DDCE379007BE551 /* WeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
 		31920CCB6F5BA1E8BA65CA06 /* Pods-WeatherTheDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTheDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTheDay/Pods-WeatherTheDay.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				C9956D741DEBAED100B2DAE2 /* InfoCircleView.swift */,
 				C9AF62391DEBD80800AA9BD6 /* CircleView.swift */,
 				0342DA5F1DEF4F7000161618 /* WeeklyCircleView.swift */,
+				0342DA611DEF74B600161618 /* HourlyCircleView.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				0342DA601DEF4F7000161618 /* WeeklyCircleView.swift in Sources */,
 				C9AF623A1DEBD80800AA9BD6 /* CircleView.swift in Sources */,
 				C9B868A51DDA360300C75BE5 /* AppDelegate.swift in Sources */,
+				0342DA621DEF74B600161618 /* HourlyCircleView.swift in Sources */,
 				C9956D721DEBA3C700B2DAE2 /* Model.swift in Sources */,
 				C9956D761DEBAED100B2DAE2 /* InfoCircleView.swift in Sources */,
 			);
