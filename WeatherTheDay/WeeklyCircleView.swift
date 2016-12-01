@@ -33,16 +33,17 @@ import UIKit
     private func drawText(center: CGPoint) {
         let shiftFactor = (2 * radius) - lineWidth
         origin = CGPoint(x: center.x, y: center.y)
+        //origin!.x = origin!.x - size!.width/6
         size = CGSize(width: shiftFactor, height: shiftFactor * 0.9)
         
-        //let innerCircle = CGRect(origin: origin, size: size)
+        //let innerCircle = CGRect(origin: origin!, size: size!)
         
         drawTemp();
-        drawImage(name: "Cloud-Lightening");
-        drawLowHigh(input: "Low", isLow: true)
-        drawLowHigh(input: "##", isLow: true)
-        drawLowHigh(input: "High", isLow: false)
-        drawLowHigh(input: "##", isLow: false)
+        //drawImage(name: "Cloud-Lightening");
+        //drawLowHigh(input: "Low", isLow: true)
+        //drawLowHigh(input: "##", isLow: true)
+        //drawLowHigh(input: "High", isLow: false)
+        //drawLowHigh(input: "##", isLow: false)
         
         
     }
@@ -50,13 +51,13 @@ import UIKit
     private func drawTemp(){
         temp?.removeFromSuperview()
         let frame = CGRect(x: origin!.x,
-                           y: origin!.y - size!.height/4,
-                           width: size!.width/4,
+                           y: origin!.y,
+                           width: size!.width,
                            height: size!.height/2)
         temp = UILabel(frame: frame)
-        //temp!.text
+        temp!.text = "##"
         temp!.textColor = textColor
-        temp!.font = UIFont(name: textFont, size: textSize)
+        temp!.font = UIFont(name: textFont, size: 50)
         temp!.textAlignment = .center
     
         addSubview(temp!)
@@ -77,11 +78,17 @@ import UIKit
         var x : CGFloat
         var y : CGFloat
         
-        if (isLow){ x = origin!.x - 1.5*(size!.width/4)
-        } else { x = origin!.x + 1.5*(size!.width/4) }
+        if (isLow){
+            x = origin!.x - 1.5*(size!.width/4)
+        } else {
+            x = origin!.x + 1.5*(size!.width/4)
+        }
         
-        if (input == "Low" || input == "High"){ y = origin!.y + (size!.height/6)
-        } else { y = origin!.y - (size!.height/6) }
+        if (input == "Low" || input == "High"){
+            y = origin!.y - (size!.height/6)
+        } else {
+            y = origin!.y + (size!.height/6)
+        }
         
         let frame = CGRect(x: x,
                            y: y,
