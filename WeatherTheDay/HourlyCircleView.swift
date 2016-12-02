@@ -56,7 +56,8 @@ import UIKit
         //hour!.layer.borderWidth = 5;
         hour!.text = input
         //167 207 76
-        hour!.textColor = UIColor(red: 167/255, green: 207/255, blue: 76/255, alpha: 1)
+        hour!.textColor = textColor
+        //hour!.textColor = UIColor(red: 167/255, green: 207/255, blue: 76/255, alpha: 1)
         hour!.font = UIFont(name: textFont, size: 20)
         hour!.textAlignment = .center
         
