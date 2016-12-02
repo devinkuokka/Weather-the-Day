@@ -95,8 +95,8 @@ import UIKit
         
         let frame = CGRect(x: x,
                            y: y,
-                           width: 1.5*(size!.width/4),
-                           height: size!.height/2)
+                           width: 1.5*(size!.width*0.25),
+                           height: size!.height*0.5)
         
         high_low = UILabel(frame: frame)
         high_low!.text = input
@@ -106,5 +106,4 @@ import UIKit
         
         addSubview(high_low!)
     }
-    
 }
