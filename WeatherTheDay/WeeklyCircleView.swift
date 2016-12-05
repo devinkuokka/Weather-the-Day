@@ -14,6 +14,22 @@ import UIKit
         didSet { drawText(center: self.center) }
     }
     
+    var temp : String = "" {
+        didSet { drawText(center: self.center) }
+    }
+    
+    var imagePath: String = "" {
+        didSet { drawText(center: self.center) }
+    }
+    
+    var highTemp : String = "" {
+        didSet { drawText(center: self.center) }
+    }
+    
+    var lowTemp : String = "" {
+        didSet { drawText(center: self.center) }
+    }
+    
     var origin: CGPoint?
     var size: CGSize?
     
@@ -31,17 +47,17 @@ import UIKit
         origin = CGPoint(x: center.x, y: center.y)
         size = CGSize(width: shiftFactor, height: shiftFactor)
         
-        drawTemp();
-        drawImage(name: "Cloud-Lightening");
+        drawTemp(input: temp);
+        drawImage(name: imagePath);
         drawLowHigh(input: "Low", isLow: true)
-        drawLowHigh(input: "###", isLow: true)
+        drawLowHigh(input: lowTemp, isLow: true)
         drawLowHigh(input: "High", isLow: false)
-        drawLowHigh(input: "###", isLow: false)
+        drawLowHigh(input: highTemp, isLow: false)
         
         
     }
     
-    private func drawTemp(){
+    private func drawTemp(input: String){
         var temp : UILabel?
 
         temp?.removeFromSuperview()
@@ -50,7 +66,7 @@ import UIKit
                            width: size!.width*0.5,
                            height: size!.height*0.5)
         temp = UILabel(frame: frame)
-        temp!.text = "###"
+        temp!.text = input
         temp!.textColor = UIColor(red: 32/255, green: 118/255, blue: 200/255, alpha: 1)
         temp!.font = UIFont(name: textFont, size: 50)
         temp!.textAlignment = .center

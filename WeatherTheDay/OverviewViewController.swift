@@ -58,8 +58,5 @@ class OverviewViewController: UIViewController {
         
         descriptionCircle.text = model.description
     }
-    
-    
-    
 }
 
