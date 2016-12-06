@@ -14,12 +14,38 @@ import UIKit
         didSet { drawText(center: self.center) }
     }
     
+    var currentTemp : String = "###" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var imagePath: String = "" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var highTemp : String = "###" {
+        didSet { self.draw(self.frame)}
+    }
+    
+    var lowTemp : String = "###" {
+        didSet { self.draw(self.frame)      }
+    }
+
     var origin: CGPoint?
     var size: CGSize?
     
+    var currentTempLabel : UILabel?
+    var lowTempLabel : UILabel?
+    var highTempLabel : UILabel?
+    var image: UIImageView?
+    
+    var oldFrame : CGRect?
     
     override func draw(_ frame: CGRect) {
-        super.draw(frame)
+        if oldFrame == nil {
+            oldFrame = frame
+        }
+         super.draw(oldFrame!)
+        
         let center = CGPoint(x: 3*lineWidth, y: 2*lineWidth)
         backgroundColor = UIColor.clear
         drawText(center: center)
@@ -31,79 +57,101 @@ import UIKit
         origin = CGPoint(x: center.x, y: center.y)
         size = CGSize(width: shiftFactor, height: shiftFactor)
         
-        drawTemp();
-        drawImage(name: "Cloud-Lightening");
-        drawLowHigh(input: "Low", isLow: true)
-        drawLowHigh(input: "###", isLow: true)
-        drawLowHigh(input: "High", isLow: false)
-        drawLowHigh(input: "###", isLow: false)
-        
-        
+        drawTemp()
+        drawImage()
+        drawLowLabel()
+        drawHighLabel()
+        drawLowTemp()
+        drawHighTemp()
     }
     
-    private func drawTemp(){
-        var temp : UILabel?
-
-        temp?.removeFromSuperview()
+    func drawTemp(){
+        currentTempLabel?.removeFromSuperview()
         let frame = CGRect(x: size!.width*0.5 - size!.width*0.1,
                            y: size!.height*0.66,
                            width: size!.width*0.5,
                            height: size!.height*0.5)
-        temp = UILabel(frame: frame)
-        temp!.text = "###"
-        temp!.textColor = UIColor(red: 32/255, green: 118/255, blue: 200/255, alpha: 1)
-        temp!.font = UIFont(name: textFont, size: 50)
-        temp!.textAlignment = .center
-
+        currentTempLabel = UILabel(frame: frame)
+        currentTempLabel!.text = currentTemp
+        currentTempLabel!.textColor = UIColor(red: 32/255, green: 118/255, blue: 200/255, alpha: 1)
+        currentTempLabel!.font = UIFont(name: textFont, size: 50)
+        currentTempLabel!.textAlignment = .center
     
-        addSubview(temp!)
+        addSubview(currentTempLabel!)
     }
     
-    private func drawImage(name: String) {
-        var image: UIImageView?
-
+    private func drawImage() {
         image?.removeFromSuperview()
         let frame = CGRect(x: size!.width*0.5 - size!.width*0.1,
-                           y: size!.height*0.33,
+                           y: origin!.y - size!.height*0.1,
                            width: size!.width*0.5,
                            height: size!.height*0.5)
         image = UIImageView(frame: frame)
-        image!.image = UIImage(named: name)
+        image!.image = loadWeatherImage(icon: imagePath)
+        
+        addSubview(image!)
     }
     
-    private func drawLowHigh(input: String, isLow: Bool){
-        var high_low: UILabel?
-
-        high_low?.removeFromSuperview()
-        var x : CGFloat
-        var y : CGFloat
-        var t : CGFloat
-        
-        if (isLow){
-            x = origin!.x
-        } else {
-            x = size!.width*0.75
-        }
-        
-        if (input == "Low" || input == "High"){
-            y = origin!.y + size!.height*0.15
-            t = 20;
-        } else {
-            y = origin!.y + size!.height*0.3
-            t = 30
-        }
-        
-        let frame = CGRect(x: x,
-                           y: y,
+    func drawLowLabel(){
+        let frame = CGRect(x: origin!.x,
+                           y: origin!.y + size!.height*0.15,
                            width: 1.5*(size!.width*0.25),
                            height: size!.height*0.5)
         
-        high_low = UILabel(frame: frame)
-        high_low!.text = input
-        high_low!.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
-        high_low!.font = UIFont(name: textFont, size: t)
-        high_low!.textAlignment = .center
+        let lowLabel = UILabel(frame: frame)
+        lowLabel.text = "Low"
+        lowLabel.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
+        lowLabel.font = UIFont(name: textFont, size: 20)
+        lowLabel.textAlignment = .center
         
-        addSubview(high_low!)
+        addSubview(lowLabel)
     }
+    
+    func drawHighLabel(){
+        let frame = CGRect(x: size!.width*0.75,
+                           y: origin!.y + size!.height*0.15,
+                           width: 1.5*(size!.width*0.25),
+                           height: size!.height*0.5)
+        
+        let highLabel = UILabel(frame: frame)
+        highLabel.text = "High"
+        highLabel.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
+        highLabel.font = UIFont(name: textFont, size: 20)
+        highLabel.textAlignment = .center
+        
+        addSubview(highLabel)
+    }
+
+    func drawLowTemp(){
+        lowTempLabel?.removeFromSuperview()
+        let frame = CGRect(x: origin!.x,
+                           y: origin!.y + size!.height*0.3,
+                           width: 1.5*(size!.width*0.25),
+                           height: size!.height*0.5)
+        
+        lowTempLabel = UILabel(frame: frame)
+        lowTempLabel!.text = lowTemp
+        lowTempLabel!.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
+        lowTempLabel!.font = UIFont(name: textFont, size: 30)
+        lowTempLabel!.textAlignment = .center
+        
+        addSubview(lowTempLabel!)
+    }
+    
+    func drawHighTemp(){
+        highTempLabel?.removeFromSuperview()
+        let frame = CGRect(x: size!.width*0.75,
+                           y: origin!.y + size!.height*0.3,
+                           width: 1.5*(size!.width*0.25),
+                           height: size!.height*0.5)
+        
+        highTempLabel = UILabel(frame: frame)
+        highTempLabel!.text = highTemp
+        highTempLabel!.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
+        highTempLabel!.font = UIFont(name: textFont, size: 30)
+        highTempLabel!.textAlignment = .center
+        
+        addSubview(highTempLabel!)
+    }
+
 }
