@@ -23,6 +23,9 @@
 		C9B868AE1DDA360300C75BE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B868AC1DDA360300C75BE5 /* Main.storyboard */; };
 		C9B868B01DDA360300C75BE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B868AF1DDA360300C75BE5 /* Assets.xcassets */; };
 		C9B868B31DDA360300C75BE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B868B11DDA360300C75BE5 /* LaunchScreen.storyboard */; };
+		C9E193911DF5EE5B00DA7D13 /* MapPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E193901DF5EE5B00DA7D13 /* MapPickerView.swift */; };
+		C9E193931DF5F72900DA7D13 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E193921DF5F72900DA7D13 /* ContainerViewController.swift */; };
+		C9EAF9701DF677A800CBA2EE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EAF96F1DF677A800CBA2EE /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		C9B868AF1DDA360300C75BE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9B868B21DDA360300C75BE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9B868B41DDA360300C75BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E193901DF5EE5B00DA7D13 /* MapPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPickerView.swift; sourceTree = "<group>"; };
+		C9E193921DF5F72900DA7D13 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		C9EAF96F1DF677A800CBA2EE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9EAF9701DF677A800CBA2EE /* MapKit.framework in Frameworks */,
 				88507E2FC52C90CF54141645 /* Pods_WeatherTheDay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +70,7 @@
 		96A87B89A205BDCBE4664C69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9EAF96F1DF677A800CBA2EE /* MapKit.framework */,
 				8975E969D5D9CC0AC3C8A99F /* Pods_WeatherTheDay.framework */,
 			);
 			name = Frameworks;
@@ -93,6 +101,8 @@
 				C9B868A81DDA360300C75BE5 /* OverviewViewController.swift */,
 				03DDD57A1DDCE312007BE551 /* HourlyViewController.swift */,
 				03DDD57C1DDCE379007BE551 /* WeeklyViewController.swift */,
+				C9E193901DF5EE5B00DA7D13 /* MapPickerView.swift */,
+				C9E193921DF5F72900DA7D13 /* ContainerViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -187,6 +197,11 @@
 						CreatedOnToolsVersion = 8.1;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -249,7 +264,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E31F377C7AB6BDF1FBFCD28A /* [CP] Embed Pods Frameworks */ = {
@@ -276,7 +291,9 @@
 			files = (
 				03DDD57D1DDCE379007BE551 /* WeeklyViewController.swift in Sources */,
 				03DDD57B1DDCE312007BE551 /* HourlyViewController.swift in Sources */,
+				C9E193931DF5F72900DA7D13 /* ContainerViewController.swift in Sources */,
 				C9956D6E1DEB9BF900B2DAE2 /* DarkSky.swift in Sources */,
+				C9E193911DF5EE5B00DA7D13 /* MapPickerView.swift in Sources */,
 				C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */,
 				C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */,
 				C9956D6A1DEB99C600B2DAE2 /* HomeModel.swift in Sources */,

@@ -45,7 +45,7 @@ import UIKit
         label!.center = center
         label!.numberOfLines = 4
         label!.adjustsFontSizeToFitWidth = true
-        label?.lineBreakMode = .byWordWrapping
+        label!.lineBreakMode = .byWordWrapping
         
         addSubview(label!)
     }

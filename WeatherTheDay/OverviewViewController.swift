@@ -1,6 +1,7 @@
 import UIKit
 import ForecastIO
 import CoreLocation
+import LocationPickerViewController
 
 
 class OverviewViewController: UIViewController {
@@ -15,17 +16,34 @@ class OverviewViewController: UIViewController {
     fileprivate var circleLayer : CAShapeLayer?
     fileprivate var model : HomeModel?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWeather()
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        let defaults = UserDefaults.standard
+        
+        if let latitude = defaults.string(forKey: "selectedLat"),
+            let longitude = defaults.string(forKey: "selectedLon"){
+            print(latitude, longitude)
+        } else {
+            print("UseGPS")
+        }
+    }
+    
+    
     func updateWeather() {
-                ForecastLoader.getForecast(modelType: HomeModel.self) {model in
-                    self.model = model
-                    self.displayWeather()
-                }
+        ForecastLoader.getForecast(modelType: HomeModel.self) {model in
+            self.model = model
+            self.displayWeather()
+        }
+        
+        
+        self.displayWeather()
     }
     
     func displayWeather() {
