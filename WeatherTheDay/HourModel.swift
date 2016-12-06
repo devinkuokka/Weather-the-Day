@@ -30,8 +30,8 @@ class HourModel {
     let hourString: String
     
     let iconPath : String
-    let currentTemp : Int
-    let chanceOfPrecip : Float
+    let currentTemp : String
+    let chanceOfPrecip : String
     
     
     init (hour: Int, iconPath: String, temp: Int, chanceOfPrecip: Float) {
@@ -40,12 +40,14 @@ class HourModel {
             self.hourString = (self.hour - 12).description + " PM"
         } else if (self.hour == 12){
             self.hourString = self.hour.description + " PM"
+        } else if (self.hour == 0) {
+            self.hourString = "12 AM"
         } else {
             self.hourString = self.hour.description + " AM"
         }
         
         self.iconPath = iconPath
-        self.currentTemp = temp
-        self.chanceOfPrecip = chanceOfPrecip
+        self.currentTemp = "\(temp)"
+        self.chanceOfPrecip = "\(Int(chanceOfPrecip))"
     }
 }

@@ -30,16 +30,18 @@ class WeeklyViewController: UIViewController {
         guard let model = self.model else {
             return
         }
-        
-        fillCircle(circle: todayCircle, day: 0, model: model)
-        fillCircle(circle: tomorrowCircle, day: 1, model: model)
-        fillCircle(circle: dayAfterCircle, day: 2, model: model)
+    
+        fillCircle(circle: todayCircle, model: model.days[0])
+        fillCircle(circle: tomorrowCircle, model: model.days[1])
+        fillCircle(circle: dayAfterCircle, model: model.days[2])
     }
     
-    func fillCircle(circle: WeeklyCircleView, day: Int, model: DaysModel){
-        circle.imagePath = model.days[day].iconPath
-        circle.temp = model.days[day].currentTemp.description
-        circle.lowTemp = "\(model.days[day].lowTemp)"
-        circle.highTemp = "\(model.days[day].highTemp)"
+    func fillCircle(circle: WeeklyCircleView, model: DayModel){
+        DispatchQueue.main.async(){
+            circle.imagePath = model.iconPath
+            circle.currentTemp = "\(model.currentTemp)"
+            circle.lowTemp = "\(model.lowTemp)"
+            circle.highTemp = "\(model.highTemp)"
+        }
     }
 }

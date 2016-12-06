@@ -40,26 +40,27 @@ class HourlyViewController: UIViewController {
             return
         }
         
-        fillCircle(circle: hour1, hour: 0, model: model)
-        fillCircle(circle: hour2, hour: 1, model: model)
-        fillCircle(circle: hour3, hour: 2, model: model)
-        fillCircle(circle: hour4, hour: 3, model: model)
-        fillCircle(circle: hour5, hour: 4, model: model)
-        fillCircle(circle: hour6, hour: 5, model: model)
-        fillCircle(circle: hour7, hour: 6, model: model)
-        fillCircle(circle: hour8, hour: 7, model: model)
-        fillCircle(circle: hour9, hour: 8, model: model)
-        fillCircle(circle: hour10, hour: 9, model: model)
-        fillCircle(circle: hour11, hour: 10, model: model)
-        fillCircle(circle: hour12, hour: 11, model: model)
+        fillCircle(circle: hour1, model: model.hours[0])
+        fillCircle(circle: hour2, model: model.hours[1])
+        fillCircle(circle: hour3, model: model.hours[2])
+        fillCircle(circle: hour4, model: model.hours[3])
+        fillCircle(circle: hour5, model: model.hours[4])
+        fillCircle(circle: hour6, model: model.hours[5])
+        fillCircle(circle: hour7, model: model.hours[6])
+        fillCircle(circle: hour8, model: model.hours[7])
+        fillCircle(circle: hour9, model: model.hours[8])
+        fillCircle(circle: hour10, model: model.hours[9])
+        fillCircle(circle: hour11, model: model.hours[10])
+        fillCircle(circle: hour12, model: model.hours[11])
     }
     
-    func fillCircle(circle: HourlyCircleView, hour: Int, model: HoursModel){
-        
-        circle.hour = model.hours[hour].hourString
-        circle.temp = model.hours[hour].currentTemp
-        circle.imagePath = model.hours[hour].iconPath
-        circle.precip = model.hours[hour].chanceOfPrecip
+    func fillCircle(circle: HourlyCircleView, model: HourModel){
+        DispatchQueue.main.async(){
+            circle.hour = model.hourString
+            circle.currentTemp = model.currentTemp
+            circle.imagePath = model.iconPath
+            circle.precip = model.chanceOfPrecip
+        }
     }
 }
 

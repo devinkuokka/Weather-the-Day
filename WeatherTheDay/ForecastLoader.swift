@@ -31,7 +31,7 @@ class ForecastLoader {
         let forecastIOClient = APIClient(apiKey: ForecastLoader.apiKey)
         let latitude = Double(coordinates.latitude)
         let longitude = Double(coordinates.longitude)
-        forecastIOClient.getForecast(latitude: latitude, longitude: longitude) {
+        forecastIOClient.getForecast(latitude: latitude, longitude: longitude, extendHourly: true, excludeForecastFields: []) {
             (currentForecast, error) -> Void in
             if let currentForecast = currentForecast {
                 callback(T(forecast: currentForecast))

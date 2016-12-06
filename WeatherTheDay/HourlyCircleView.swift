@@ -2,22 +2,6 @@ import UIKit
 
 @IBDesignable
 @objc class HourlyCircleView: CircleView {
-    var hour : String = "" {
-        didSet { drawText(center: self.center) }
-    }
-    
-    var temp : Int = 0 {
-        didSet { drawText(center: self.center) }
-    }
-    
-    var precip : Float = 0 {
-        didSet { drawText(center: self.center) }
-    }
-    
-    var imagePath : String = "" {
-        didSet { drawText(center: self.center) }
-    }
-
     
     @IBInspectable var textColor : UIColor = UIColor.black {
         didSet { drawText(center: self.center) }
@@ -31,18 +15,42 @@ import UIKit
         didSet { drawText(center: self.center) }
     }
     
-    var label : UILabel?
     
+    var hour : String = "10 AM" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var currentTemp : String = "###" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var precip : String = "##%" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var imagePath : String = "sun" {
+        didSet { self.draw(self.frame) }
+    }
+    
+    var hourLabel : UILabel?
+    var currentTempLabel : UILabel?
+    var image: UIImageView?
+    var precipLabel: UILabel?
+    
+    var origin: CGPoint?
+    var size: CGSize?
+    
+    var oldFrame : CGRect?
     
     override func draw(_ frame: CGRect) {
-        super.draw(frame)
+        if oldFrame == nil {
+            oldFrame = frame
+        }
+        super.draw(oldFrame!)
         let center = CGPoint(x: 3*lineWidth, y: 2*lineWidth)
         backgroundColor = UIColor.clear
         drawText(center: center)
     }
-    
-    var origin: CGPoint?
-    var size: CGSize?
     
     private func drawText(center: CGPoint) {
         let shiftFactor = (2 * radius) - lineWidth
@@ -51,13 +59,11 @@ import UIKit
         
         drawHour()
         drawTemp();
-        drawRain();
+        drawPrecip();
         drawImage();
     }
     
     private func drawHour(){
-        var hourLabel: UILabel?
-        
         hourLabel?.removeFromSuperview()
         let frame = CGRect(x: origin!.x + size!.width*0.17,
                            y: origin!.y + size!.height*0.01,
@@ -67,59 +73,53 @@ import UIKit
         hourLabel = UILabel(frame: frame)
         hourLabel!.text = hour
         hourLabel!.textColor = textColor
-        hourLabel!.font = UIFont(name: textFont, size: 20)
+        hourLabel!.font = UIFont(name: textFont, size: 25)
         hourLabel!.textAlignment = .center
         
         addSubview(hourLabel!)
     }
     
     private func drawTemp(){
-        var tempLabel : UILabel?
-        
-        tempLabel?.removeFromSuperview()
-        let frame = CGRect(x: origin!.x + size!.width*0.05,
+        currentTempLabel?.removeFromSuperview()
+        let frame = CGRect(x: origin!.x,
                            y: origin!.y + size!.height*0.25,
                            width: size!.width*0.5,
                            height: size!.height*0.5)
-        tempLabel = UILabel(frame: frame)
-        tempLabel!.text = temp.description
-        tempLabel!.textColor = UIColor(red: 32/255, green: 118/255, blue: 200/255, alpha: 1)
-        tempLabel!.font = UIFont(name: textFont, size: 30)
-        tempLabel!.textAlignment = .center
+        currentTempLabel = UILabel(frame: frame)
+        currentTempLabel!.text = currentTemp
+        currentTempLabel!.textColor = UIColor(red: 32/255, green: 118/255, blue: 200/255, alpha: 1)
+        currentTempLabel!.font = UIFont(name: textFont, size: 35)
+        currentTempLabel!.textAlignment = .center
         
-        addSubview(tempLabel!)
+        addSubview(currentTempLabel!)
     }
     
-    private func drawRain(){
-        var rain : UILabel?
-        
-        rain?.removeFromSuperview()
+    private func drawPrecip(){
+        precipLabel?.removeFromSuperview()
         
         let frame = CGRect(x: origin!.x + size!.width*0.17,
                            y: origin!.y + size!.height - size!.height*0.4,
                            width: size!.width*0.75,
                            height: size!.height*0.33)
         
-        rain = UILabel(frame: frame)
-        rain!.text = Int(precip).description + "%"
-        rain!.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
-        rain!.font = UIFont(name: textFont, size: 20)
-        rain!.textAlignment = .center
+        precipLabel = UILabel(frame: frame)
+        precipLabel!.text = precip + "%"
+        precipLabel!.textColor = UIColor(red: 201/255, green: 74/255, blue: 22/255, alpha: 1)
+        precipLabel!.font = UIFont(name: textFont, size: 25)
+        precipLabel!.textAlignment = .center
         
-        addSubview(rain!)
+        addSubview(precipLabel!)
     }
     
     private func drawImage() {
-        var image: UIImageView?
-        
         image?.removeFromSuperview()
-        let frame = CGRect(x: origin!.x + size!.width - size!.width*0.05,
+        let frame = CGRect(x: origin!.x + size!.width/2 + size!.width*0.05,
                            y: origin!.y + size!.height*0.25,
                            width: size!.width*0.5,
                            height: size!.height*0.5)
 
         image = UIImageView(frame: frame)
-        image!.image = UIImage(named: imagePath)
+        image!.image = loadWeatherImage(icon: imagePath)
         
         addSubview(image!)
     }
