@@ -113,10 +113,10 @@ import UIKit
     
     private func drawImage() {
         image?.removeFromSuperview()
-        let frame = CGRect(x: origin!.x + size!.width/2 + size!.width*0.05,
-                           y: origin!.y + size!.height*0.25,
-                           width: size!.width*0.5,
-                           height: size!.height*0.5)
+        let frame = CGRect(x: origin!.x + size!.width/2 - size!.width*0.1,
+                           y: origin!.y + size!.height*0.1,
+                           width: size!.width*0.75,
+                           height: size!.height*0.75)
 
         image = UIImageView(frame: frame)
         image!.image = loadWeatherImage(icon: imagePath)
