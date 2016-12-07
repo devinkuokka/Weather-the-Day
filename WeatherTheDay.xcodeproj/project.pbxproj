@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0332E31D1DF7BFA00038F0D6 /* yesterdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332E31B1DF7BF900038F0D6 /* yesterdayModel.swift */; };
 		0342DA601DEF4F7000161618 /* WeeklyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342DA5F1DEF4F7000161618 /* WeeklyCircleView.swift */; };
 		0342DA621DEF74B600161618 /* HourlyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342DA611DEF74B600161618 /* HourlyCircleView.swift */; };
 		03A22ED91DF5E204002D38B2 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A22ED81DF5E204002D38B2 /* DayModel.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0332E31B1DF7BF900038F0D6 /* yesterdayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yesterdayModel.swift; sourceTree = "<group>"; };
 		0342DA5F1DEF4F7000161618 /* WeeklyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyCircleView.swift; sourceTree = "<group>"; };
 		0342DA611DEF74B600161618 /* HourlyCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCircleView.swift; sourceTree = "<group>"; };
 		03A22ED81DF5E204002D38B2 /* DayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		C9956D6C1DEB99D600B2DAE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0332E31B1DF7BF900038F0D6 /* yesterdayModel.swift */,
 				C91D230F1DDCDB7700CD9F77 /* HomeModel.swift */,
 				C9956D711DEBA3C700B2DAE2 /* Model.swift */,
 				03A22ED81DF5E204002D38B2 /* DayModel.swift */,
@@ -306,6 +309,7 @@
 				03DDD57B1DDCE312007BE551 /* HourlyViewController.swift in Sources */,
 				C9E193931DF5F72900DA7D13 /* ContainerViewController.swift in Sources */,
 				C9956D6E1DEB9BF900B2DAE2 /* DarkSky.swift in Sources */,
+				0332E31D1DF7BFA00038F0D6 /* yesterdayModel.swift in Sources */,
 				C9E193911DF5EE5B00DA7D13 /* MapPickerView.swift in Sources */,
 				C9B868A91DDA360300C75BE5 /* OverviewViewController.swift in Sources */,
 				C9956D701DEB9CE900B2DAE2 /* ForecastLoader.swift in Sources */,
