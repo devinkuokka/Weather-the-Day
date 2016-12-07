@@ -18,6 +18,7 @@ class HourlyViewController: UIViewController {
     @IBOutlet weak var hour11: HourlyCircleView!
     @IBOutlet weak var hour12: HourlyCircleView!
     
+    @IBOutlet weak var locationLabel: UILabel!
     
     fileprivate var circleLayer : CAShapeLayer?
     fileprivate var model : HoursModel?

@@ -12,6 +12,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var highTemperatureLabel: UILabel!
     @IBOutlet weak var chanceOfPrecipCircle: InfoCircleView!
     @IBOutlet weak var descriptionCircle: InfoCircleView!
+    @IBOutlet weak var locationLabel: UILabel!
     
     fileprivate var circleLayer : CAShapeLayer?
     fileprivate var model : HomeModel?

@@ -10,6 +10,8 @@ class WeeklyViewController: UIViewController {
     @IBOutlet weak var tomorrowCircle: WeeklyCircleView!
     @IBOutlet weak var dayAfterCircle: WeeklyCircleView!
     
+    @IBOutlet weak var locationLabel: UILabel!
+    
     fileprivate var circleLayer : CAShapeLayer?
     fileprivate var model : DaysModel?
     
