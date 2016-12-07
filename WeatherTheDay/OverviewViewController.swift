@@ -68,10 +68,10 @@ class OverviewViewController: UIViewController {
             case 1.0:
                 chanceOfPrecipCircle.text = "\(precip.description.capitalized)ing Now"
             default:
-                chanceOfPrecipCircle.text = "No Precipitation"
+                chanceOfPrecipCircle.text = "No Precip."
             }
         } else {
-            chanceOfPrecipCircle.text = "No Precipitation"
+            chanceOfPrecipCircle.text = "No Precip."
         }
         
         

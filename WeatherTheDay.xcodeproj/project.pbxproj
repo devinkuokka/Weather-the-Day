@@ -207,6 +207,7 @@
 				TargetAttributes = {
 					C9B868A01DDA360300C75BE5 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = VMX58BY458;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -443,6 +444,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VMX58BY458;
 				INFOPLIST_FILE = WeatherTheDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse438.WeatherTheDay;
@@ -457,6 +459,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VMX58BY458;
 				INFOPLIST_FILE = WeatherTheDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse438.WeatherTheDay;
