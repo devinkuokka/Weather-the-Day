@@ -36,15 +36,12 @@ class OverviewViewController: UIViewController {
     
     
     func updateWeather() {
-//        if let model = currentState?.object(forKey: "debugHomeModel") as? HomeModel {
-//            self.model = model
-//        } else
         if let forecast = currentState?.object(forKey: "forecast") as? Forecast {
             self.model = HomeModel(forecast: forecast)
         }
         
         if let location = currentState?.unarchiveObject(forKey: "location") as? LocationItem {
-            print(location)
+            self.locationLabel.text = location.name
         }
     }
     

@@ -2,6 +2,7 @@ import UIKit
 import ForecastIO
 import CoreLocation
 import Prephirences
+import LocationPickerViewController
 
 class HourlyViewController: UIViewController {
     
@@ -18,15 +19,17 @@ class HourlyViewController: UIViewController {
     @IBOutlet weak var hour11: HourlyCircleView!
     @IBOutlet weak var hour12: HourlyCircleView!
     
-
+    
     @IBOutlet weak var locationLabel: UILabel!
     
-
+    
     fileprivate let currentState = Prephirences.instance(forKey: "currentState")
     fileprivate var circleLayer : CAShapeLayer?
+    
     var model : HoursModel? {
         didSet { self.displayWeather() }
     }
+    
     
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
@@ -49,6 +52,11 @@ class HourlyViewController: UIViewController {
     func displayWeather() {
         guard let model = self.model else {
             return
+        }
+        DispatchQueue.main.async(){
+            if let location = self.currentState?.unarchiveObject(forKey: "location") as? LocationItem {
+                self.locationLabel.text = location.name
+            }
         }
         
         fillCircle(circle: hour1, model: model.hours[0])

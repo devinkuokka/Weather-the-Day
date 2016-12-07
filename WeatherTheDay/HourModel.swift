@@ -27,7 +27,7 @@ class HoursModel : Model{
 
 class HourModel {
     let hour : Int
-    let hourString: String
+    var hourString: String
     
     let iconPath : String
     let currentTemp : String
@@ -36,18 +36,20 @@ class HourModel {
     
     init (hour: Int, iconPath: String, temp: Int, chanceOfPrecip: Float) {
         self.hour = hour
-        if (self.hour > 12){
-            self.hourString = (self.hour - 12).description + " PM"
-        } else if (self.hour == 12){
-            self.hourString = self.hour.description + " PM"
-        } else if (self.hour == 0) {
-            self.hourString = "12 AM"
+        if (self.hour % 12 == 0){
+            self.hourString = "12"
         } else {
-            self.hourString = self.hour.description + " AM"
+            self.hourString = "\(self.hour % 12)"
+        }
+        
+        if (self.hour % 24 < 12) {
+            self.hourString += " AM"
+        } else {
+            self.hourString += " PM"
         }
         
         self.iconPath = iconPath
         self.currentTemp = "\(temp)"
-        self.chanceOfPrecip = "\(Int(chanceOfPrecip))"
+        self.chanceOfPrecip = "\(Int(chanceOfPrecip*100))"
     }
 }

@@ -22,11 +22,6 @@ class MapPicker : LocationPicker {
         super.viewDidLoad()
         loadLocations()
     }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        
-//    }
     
     func loadLocations() {
         if alternativeLocations == nil {
