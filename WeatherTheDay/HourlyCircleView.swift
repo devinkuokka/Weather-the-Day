@@ -24,7 +24,7 @@ import UIKit
         didSet { self.draw(self.frame) }
     }
     
-    var precip : String = "##%" {
+    var precip : String = "##" {
         didSet { self.draw(self.frame) }
     }
     
