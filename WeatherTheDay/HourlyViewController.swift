@@ -1,7 +1,7 @@
 import UIKit
 import ForecastIO
 import CoreLocation
-
+import Prephirences
 
 class HourlyViewController: UIViewController {
     
@@ -18,21 +18,31 @@ class HourlyViewController: UIViewController {
     @IBOutlet weak var hour11: HourlyCircleView!
     @IBOutlet weak var hour12: HourlyCircleView!
     
+
     @IBOutlet weak var locationLabel: UILabel!
     
+
+    fileprivate let currentState = Prephirences.instance(forKey: "currentState")
     fileprivate var circleLayer : CAShapeLayer?
-    fileprivate var model : HoursModel?
+    var model : HoursModel? {
+        didSet { self.displayWeather() }
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        updateWeather()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ForecastLoader.getForecast()
         updateWeather()
     }
     
     
     func updateWeather() {
-        ForecastLoader.getForecast(modelType: HoursModel.self) {model in
-            self.model = model
-            self.displayWeather()
+        if let forecast = currentState?.object(forKey: "forecast") as? Forecast {
+            self.model = HoursModel(forecast: forecast)
         }
     }
     

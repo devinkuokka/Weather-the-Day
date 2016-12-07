@@ -1,6 +1,7 @@
 import UIKit
 import ForecastIO
 import CoreLocation
+import Prephirences
 import LocationPickerViewController
 
 
@@ -14,37 +15,37 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var descriptionCircle: InfoCircleView!
     @IBOutlet weak var locationLabel: UILabel!
     
-    fileprivate var circleLayer : CAShapeLayer?
-    fileprivate var model : HomeModel?
+    var model : HomeModel? {
+        didSet { self.displayWeather() }
+    }
     
+    fileprivate let currentState = Prephirences.instance(forKey: "currentState")
+    fileprivate var circleLayer : CAShapeLayer?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ForecastLoader.getForecast()
+        updateWeather()
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
         updateWeather()
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        let defaults = UserDefaults.standard
-        
-        if let latitude = defaults.string(forKey: "selectedLat"),
-            let longitude = defaults.string(forKey: "selectedLon"){
-            print(latitude, longitude)
-        } else {
-            print("UseGPS")
-        }
-    }
-    
-    
     func updateWeather() {
-        ForecastLoader.getForecast(modelType: HomeModel.self) {model in
-            self.model = model
-            self.displayWeather()
+//        if let model = currentState?.object(forKey: "debugHomeModel") as? HomeModel {
+//            self.model = model
+//        } else
+        if let forecast = currentState?.object(forKey: "forecast") as? Forecast {
+            self.model = HomeModel(forecast: forecast)
         }
         
-        
-        self.displayWeather()
+        if let location = currentState?.unarchiveObject(forKey: "location") as? LocationItem {
+            print(location)
+        }
     }
     
     func displayWeather() {
