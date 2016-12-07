@@ -18,6 +18,10 @@ class HourlyViewController: UIViewController {
     @IBOutlet weak var hour11: HourlyCircleView!
     @IBOutlet weak var hour12: HourlyCircleView!
     
+
+    @IBOutlet weak var locationLabel: UILabel!
+    
+
     fileprivate let currentState = Prephirences.instance(forKey: "currentState")
     fileprivate var circleLayer : CAShapeLayer?
     var model : HoursModel? {

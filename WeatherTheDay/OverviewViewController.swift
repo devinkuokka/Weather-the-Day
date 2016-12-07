@@ -13,6 +13,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var highTemperatureLabel: UILabel!
     @IBOutlet weak var chanceOfPrecipCircle: InfoCircleView!
     @IBOutlet weak var descriptionCircle: InfoCircleView!
+    @IBOutlet weak var locationLabel: UILabel!
     
     var model : HomeModel? {
         didSet { self.displayWeather() }
