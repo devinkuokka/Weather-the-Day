@@ -1,6 +1,7 @@
 import UIKit
 import ForecastIO
 import CoreLocation
+import Prephirences
 
 
 class WeeklyViewController: UIViewController {
@@ -11,18 +12,28 @@ class WeeklyViewController: UIViewController {
     @IBOutlet weak var dayAfterCircle: WeeklyCircleView!
     
     fileprivate var circleLayer : CAShapeLayer?
-    fileprivate var model : DaysModel?
+    var model : DaysModel? {
+        didSet { self.displayWeather() }
+    }
+    fileprivate let currentState = Prephirences.instance(forKey: "currentState")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ForecastLoader.getForecast()
+        updateWeather()
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
         updateWeather()
     }
     
     
+    
     func updateWeather() {
-        ForecastLoader.getForecast(modelType: DaysModel.self) {model in
-            self.model = model
-            self.displayWeather()
+        if let forecast = currentState?.object(forKey: "forecast") as? Forecast {
+            self.model = DaysModel(forecast: forecast)
         }
     }
     

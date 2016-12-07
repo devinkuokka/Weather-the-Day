@@ -1,42 +1,80 @@
 import LocationPickerViewController
 import CoreLocation
+import Prephirences
 import MapKit
 
 
 class MapPicker : LocationPicker {
+    fileprivate let currentState = Prephirences.instance(forKey: "currentState") as! MutableDictionaryPreferences
+    fileprivate let favorites = Prephirences.instance(forKey: "favorites") as! MutablePreferencesType
     
-    var favorites = [LocationItem]()
     
-    open override func locationDidSelect(_ locationItem: LocationItem) {
-        super.locationDidSelect(locationItem)
-        let defaults = UserDefaults.standard
-        defaults.set("\(locationItem.coordinate!.latitude)", forKey: "selectedLat")
-        defaults.set("\(locationItem.coordinate!.longitude)", forKey: "selectedLon")
-       
-        defaults.set(locationItem.formattedAddressString, forKey: "favName")
-        favorites = []
-        loadFavorites()
+    override func alternativeLocationDidDelete(locationItem: LocationItem) {
+        super.alternativeLocationDidDelete(locationItem: locationItem)
+       //alternativeLocations?.remove(at: (alternativeLocations?.index(of: locationItem))!)
+        favorites.set(objectToArchive: alternativeLocations, forKey: "locations")
     }
     
     
-    func numberOfAlternativeLocations() -> Int {
-        return favorites.count
+    override func viewDidLoad() {
+        self.addBarButtons()
+        isAlternativeLocationEditable = true
+        super.viewDidLoad()
+        loadLocations()
     }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+//    }
     
-    func alternativeLocationAtIndex(index: Int) -> LocationItem {
-       return favorites[index]
-    }
-
-    func loadFavorites() {
-        let defaults = UserDefaults.standard
-        if let name = defaults.string(forKey: "favName") {
-            CLGeocoder().geocodeAddressString(name) {places, error in
-                if let location = places?[0].location?.coordinate {
-                    self.favorites.append(LocationItem(mapItem:
-                        MKMapItem.init(placemark:
-                            MKPlacemark(coordinate: location))))
-                }
+    func loadLocations() {
+        if alternativeLocations == nil {
+            alternativeLocations = []
+        }
+        alternativeLocations?.removeAll(keepingCapacity: true)
+        if let favoriteLocations = favorites.unarchiveObject(forKey: "locations")  as? [LocationItem] {
+            for location in favoriteLocations {
+                alternativeLocations?.append(location)
             }
         }
     }
+    
+    
+    open override func locationDidSelect(locationItem: LocationItem) {
+        super.locationDidSelect(locationItem: locationItem)
+        currentState.set(objectToArchive: locationItem, forKey: "location")
+        if alternativeLocations == nil {
+            alternativeLocations = []
+        }
+        
+        if !(alternativeLocations?.contains(locationItem))! {
+            alternativeLocations?.append(locationItem)
+        }
+        favorites.set(objectToArchive: alternativeLocations, forKey: "locations")
+    }
+    
+    open override func locationDidPick(locationItem: LocationItem) {
+        locationDidSelect(locationItem: locationItem)
+        super.locationDidPick(locationItem: locationItem)
+        
+        if alternativeLocations == nil {
+            alternativeLocations = []
+        }
+        
+        if !(alternativeLocations?.contains(locationItem))! {
+            alternativeLocations?.append(locationItem)
+        }
+        favorites.set(objectToArchive: alternativeLocations, forKey: "locations")
+    }
+    
+    
+    //    func numberOfAlternativeLocations() -> Int {
+    //        return favorites.count
+    //    }
+    //
+    //    func alternativeLocationAtIndex(index: Int) -> LocationItem {
+    //       return favorites[index]
+    //    }
+    
 }

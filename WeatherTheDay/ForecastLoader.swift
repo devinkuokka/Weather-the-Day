@@ -1,40 +1,70 @@
 import Foundation
 import CoreLocation
+import Prephirences
+import LocationPickerViewController
 import ForecastIO
 
 class ForecastLoader {
     static fileprivate let apiKey = "06afa3d18acac1c10822fec658f162ea"
-    static fileprivate let geocoder = CLGeocoder()
+    static fileprivate let currentState = Prephirences.instance(forKey: "currentState") as! MutablePreferencesType
     static fileprivate let locationManager = loadLocationManager()
+    static fileprivate var forecast : Forecast?
     
-    
-    /// Gets the forecast for the user's current location.
-    static func getForecast<T: Model>(modelType: T.Type, callback: @escaping (T) -> Void) {
-        if let currentPosition = locationManager.location?.coordinate {
-            getForecast(coordinates: currentPosition, modelType: modelType, callback: callback)
+    public static func getForecast() {
+        let lat : Float
+        let lon : Float
+        
+        if let location = currentState.unarchiveObject(forKey: "location") as? LocationItem {
+            lat = Float(location.coordinate!.latitude)
+            lon = Float(location.coordinate!.longitude)
+        } else {
+            let coordinates = locationManager.location?.coordinate
+            lat = Float((coordinates?.latitude)!)
+            lon = Float((coordinates?.longitude)!)
         }
-    }
-    
-    /// Gets the forecast for the provided address.
-    static func getForecast<T: Model>(address: String, modelType: T.Type, callback: @escaping (T) -> Void) {
-        geocoder.geocodeAddressString(address) {places, error in
-            if let positon = places?[0].location?.coordinate {
-                getForecast(coordinates: positon, modelType: modelType, callback: callback)
+        
+
+        if let previousForecast = currentState.object(forKey: "forecast") as? Forecast {
+            
+            let prevLat = Float(previousForecast.latitude)
+            let prevLon = Float(previousForecast.longitude)
+            
+
+            
+            if ( lat != prevLat || lon != prevLon) {
+                getForecast(latitude: lat,
+                            longitude: lon,
+                            callback: { currentState.set($0, forKey: "forecast") },
+                            secondCallback: { currentState.set($0, forKey: "yesterday")})
             }
+        } else {
+            getForecast(latitude: lat,
+                        longitude: lon,
+                        callback: { currentState.set($0, forKey: "forecast") },
+                        secondCallback: { currentState.set($0, forKey: "yesterday")})
         }
+        
+        
+        
     }
     
-    /// Gets the forecast for the location specified by the given coordinates.
-    /// Requires a type parameter to make the Swift type checker happy, because
-    /// you can't otherwise tell the type checker which class to instantiate.
-    fileprivate static func getForecast<T: Model>(coordinates : CLLocationCoordinate2D, modelType: T.Type, callback: @escaping (T) -> Void) {
+    
+    fileprivate static func getForecast(latitude: Float, longitude: Float, callback: @escaping (Forecast) -> Void, secondCallback: @escaping (Forecast) -> Void) {
         let forecastIOClient = APIClient(apiKey: ForecastLoader.apiKey)
-        let latitude = Double(coordinates.latitude)
-        let longitude = Double(coordinates.longitude)
-        forecastIOClient.getForecast(latitude: latitude, longitude: longitude, extendHourly: true, excludeForecastFields: []) {
+        
+        forecastIOClient.getForecast(latitude: Double(latitude), longitude: Double(longitude), extendHourly: true, excludeForecastFields: []) {
             (currentForecast, error) -> Void in
             if let currentForecast = currentForecast {
-                callback(T(forecast: currentForecast))
+                callback(currentForecast)
+            }
+        }
+        
+        let yesterday = NSCalendar.current.date(byAdding: .day, value: -1, to: Date())!
+        
+        forecastIOClient.getForecast(latitude: Double(latitude), longitude: Double(longitude), time: yesterday) {
+            (currentForecast, error) -> Void in
+            if let currentForecast = currentForecast {
+                secondCallback(currentForecast)
             }
         }
     }

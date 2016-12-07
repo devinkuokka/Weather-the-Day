@@ -1,7 +1,9 @@
 target 'WeatherTheDay' do
   use_frameworks!
   pod 'SideMenu'
-  pod 'LocationPickerViewController'
+  pod 'Prephirences'
+  pod 'Prephirences/CoreData'
+  pod 'LocationPickerViewController', :git => 'https://github.com/JeromeTan1997/LocationPicker.git', :branch => 'swift-3'
   pod 'ForecastIO', :git => 'https://github.com/sxg/ForecastIO.git', :branch => 'swift3'
 end
 
